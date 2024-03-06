@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .quantity-input {
+      display: flex;
+      max-width: 150px;
+      margin: auto;
+    }
+
+    .input-group-prepend,
+    .input-group-append {
+      cursor: pointer;
+    }
+
+    .input-group-text {
+      width: 40px;
+      text-align: center;
+    }
+
+    .quantity-input input {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <div class="input-group quantity-input">
+    <div class="input-group-prepend">
+      <span class="input-group-text" onclick="decreaseQuantity()">-</span>
+    </div>
+    <input type="number" class="form-control" value="1" id="quantityInput" oninput="validateQuantity()">
+    <div class="input-group-append">
+      <span class="input-group-text" onclick="increaseQuantity()">+</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  function decreaseQuantity() {
+    const quantityInput = document.getElementById('quantityInput');
+    let currentValue = parseInt(quantityInput.value, 10);
+    if (!isNaN(currentValue) && currentValue > 1) {
+      quantityInput.value = currentValue - 1;
+    }
+  }
+
+  function increaseQuantity() {
+    const quantityInput = document.getElementById('quantityInput');
+    let currentValue = parseInt(quantityInput.value, 10);
+    if (!isNaN(currentValue)) {
+      quantityInput.value = currentValue + 1;
+    }
+  }
+
+  function validateQuantity() {
+    const quantityInput = document.getElementById('quantityInput');
+    let currentValue = parseInt(quantityInput.value, 10);
+    if (isNaN(currentValue) || currentValue < 1) {
+      quantityInput.value = 1;
+    }
+  }
+</script>
+
+</body>
+</html>
